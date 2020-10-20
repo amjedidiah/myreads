@@ -8,27 +8,24 @@ import Book from './Book';
 /**
  * Displays list of books
  * @constructor
- * @param {Object[]} bookList - List of books
+ * @param {Object[]} bookIDList - List of books
  * @param {Object[]} shelves - List of shelves
  */
-const BookList = ({bookList, shelves}) => (
+const BookList = ({bookIDList, shelves}) => (
   <ol className="books-grid">
-    {bookList.map(({authors, id, imageLinks, shelf, title}) => (
+    {bookIDList.map((bookID) => (
       <Book
-        authors={authors}
-        backgroundImage={imageLinks.thumbnail}
-        currentShelf={shelf}
+        bookID={bookID}
         shelves={shelves}
-        title={title}
-        key={`book-${id}`}
+        key={`book-${bookID}`}
       />
     ))}
   </ol>
 );
 
-// PropTypes
+// Component propTypes
 BookList.propTypes = {
-  bookList: PropTypes.array.isRequired,
+  bookIDList: PropTypes.array,
   shelves: PropTypes.array.isRequired,
 };
 

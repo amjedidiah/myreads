@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
  */
 const BookAuthors = ({authors}) => (
   <div className="book-authors">
-    {authors.map((author, i) => (
+    {authors && authors.map((author, i) => (
       <span key={`author-${i}`}>
         {i > 0 && ` | `}
         {author}
@@ -18,9 +18,9 @@ const BookAuthors = ({authors}) => (
   </div>
 );
 
-// PropTypes
+// Component propTypes
 BookAuthors.propTypes = {
-  authors: PropTypes.array.isRequired,
+  authors: PropTypes.array,
 };
 
 // Export Component

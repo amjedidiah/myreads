@@ -8,23 +8,26 @@ import BookList from './BookList';
 /**
  * Displays a book shelf
  * @constructor
- * @param {Object[]} bookList - List of books
+ * @param {Object[]} particularShelfBooks - List of books in a particular shelf
  * @param {Object[]} shelves - List of shelves
  * @param {string} title - Book shelf title
  */
-const BookShelf = ({bookList, shelves, title}) => (
+const BookShelf = ({particularShelfBooks, shelves, title}) => (
   <div className="bookshelf">
     <h2 className="bookshelf-title">{title}</h2>
 
     <div className="bookshelf-books">
-      <BookList bookList={bookList} shelves={shelves} />
+      <BookList
+        bookIDList={particularShelfBooks.map(({id}) => id)}
+        shelves={shelves}
+      />
     </div>
   </div>
 );
 
-// PropTYpes
+// Component propTypes
 BookShelf.propTypes = {
-  bookList: PropTypes.array.isRequired,
+  particularShelfBooks: PropTypes.array.isRequired,
   shelves: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
 };

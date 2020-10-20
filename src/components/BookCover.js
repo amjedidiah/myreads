@@ -18,7 +18,7 @@ const BookCover = ({backgroundImage}) => (
   ></div>
 );
 
-// PropTypes
+// Component propTypes
 BookCover.propTypes = {
   backgroundImage: PropTypes.string.isRequired,
 };

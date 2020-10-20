@@ -1,31 +1,35 @@
 // Module imports
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /**
  * Displays search bar
  * @constructor
+ * @param {string} searchQuery
+ * @callback onUpdateSearchQuery
  */
-export default function SearchBar() {
-  return (
-    <div className="search-books-bar">
-      <Link to="/" className="close-search">
-        Close
-      </Link>
-      <div className="search-books-input-wrapper">
-        {/*
-      NOTES: The search from BooksAPI is limited to a
-      particular set of search terms.
-      You can find these search terms here:
-      https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-      However, remember that the BooksAPI.search method DOES
-      search by title or author. So, don't worry if
-      you don't find a specific author or title. Every search
-      is limited by search terms.
-    */}
-        <input type="text" placeholder="Search by title or author" />
-      </div>
+const SearchBar = ({searchQuery, onUpdateSearchQuery}) => (
+  <div className="search-books-bar">
+    <Link to="/" className="close-search">
+      Close
+    </Link>
+    <div className="search-books-input-wrapper">
+      <input
+        type="text"
+        value={searchQuery}
+        placeholder="Search by title or author"
+        onChange={(e) => onUpdateSearchQuery(e.target.value)}
+      />
     </div>
-  );
-}
+  </div>
+);
+
+// Component propTypes
+SearchBar.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+  onUpdateSearchQuery: PropTypes.func.isRequired,
+};
+
+// Export Component
+export default SearchBar;

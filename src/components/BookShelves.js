@@ -8,15 +8,17 @@ import BookShelf from './BookShelf';
 /**
  *  Displays multiple shelves
  * @constructor
- * @param {Object[]} books - List of books
+ * @param {Object[]} shelfBooks - List of books belonging to a shelf
  * @param {Object[]} shelves - List of shelves
  */
-const BookShelves = ({shelves, books}) => (
+const BookShelves = ({shelves, shelfBooks}) => (
   <div className="list-books-content">
     <div>
       {shelves.map(({value, title}) => (
         <BookShelf
-          bookList={books.filter(({shelf}) => shelf === value)}
+          particularShelfBooks={shelfBooks.filter(
+              ({shelf}) => shelf === value,
+          )}
           shelves={shelves}
           title={title}
           key={`shelf-${value}`}
@@ -26,9 +28,9 @@ const BookShelves = ({shelves, books}) => (
   </div>
 );
 
-// PropTypes
+// Component propTypes
 BookShelves.propTypes = {
-  books: PropTypes.array.isRequired,
+  shelfBooks: PropTypes.array.isRequired,
   shelves: PropTypes.array.isRequired,
 };
 

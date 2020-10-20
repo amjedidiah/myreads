@@ -1,40 +1,85 @@
 // Module imports
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 // Component imports
 import SearchBar from './SearchBar';
 import BookList from './BookList';
+import {search} from '../BooksAPI';
 
 /**
  * Search Route
  * @constructor
- * @param {Object[]} books - List of books
- * @param {Object[]} shelves - List of shelves
  */
-const Search = ({books, shelves}) => {
-  const searchQuery = 'new';
+export default class Search extends Component {
+  /**
+   * Component State
+   */
+  state = {
+    searchedBookIDs: [],
+    searchQuery: '',
+  };
 
-  return (
-    <div className="search-books">
-      <SearchBar />
-      <div className="search-books-results">
-        {books && (
-          <BookList
-            bookList={books.filter(({shelf}) => shelf === searchQuery)}
-            shelves={shelves}
-          />
-        )}
+  /**
+   * Component propTypes
+   */
+  static propTypes = {
+    shelves: PropTypes.array.isRequired,
+  };
+
+  /**
+   * Updates state searchQuery
+   * @param {string} searchQuery - Search term
+   */
+  updateSearchQuery(searchQuery) {
+    this.setState(
+        () => ({searchQuery}),
+        this.updateSearchBookListWithShelf(searchQuery),
+    );
+  }
+
+  /**
+   * Fetches and updates state searchedBookIDs
+   * @param {string} searchQuery - search term
+   */
+  updateSearchBookListWithShelf(searchQuery) {
+    const updater = async () => {
+      try {
+        const searchResults = searchQuery && (await search(searchQuery, 20));
+        const searchedBookIDs = searchResults.map(({id}) => id);
+
+        this.setState(() => ({searchedBookIDs}));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    updater();
+  }
+
+  /**
+   * Returns Search UI
+   * @return {object} The UI DOM object
+   */
+  render() {
+    const {searchedBookIDs, searchQuery} = this.state;
+
+    return (
+      <div className="search-books">
+        <SearchBar
+          searchQuery={searchQuery}
+          onUpdateSearchQuery={(searchQuery) =>
+            this.updateSearchQuery(searchQuery)
+          }
+        />
+        <div className="search-books-results">
+          {searchedBookIDs && (
+            <BookList
+              bookIDList={searchedBookIDs}
+              shelves={this.props.shelves}
+            />
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
-
-// PropTypes
-Search.propTypes = {
-  books: PropTypes.array,
-  shelves: PropTypes.array,
-};
-
-// Export component
-export default Search;
+    );
+  }
+}

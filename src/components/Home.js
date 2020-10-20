@@ -1,31 +1,73 @@
 // Module imports
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 // Component imports
 import BookShelves from './BookShelves';
 import AddBook from './AddBook';
+import {getAll} from '../BooksAPI';
 
 /**
  * Home Route
  * @constructor
- * @param {Object[]} books - List of books
+ * @param {Object[]} shelfBooks - List of books
  * @param {Object[]} shelves - List of shelves
  */
-const Home = ({books, shelves}) => (
-  <div className="list-books">
-    <div className="list-books-title">
-      <h1>MyReads</h1>
-    </div>
-    {books && <BookShelves books={books} shelves={shelves} />}
-    <AddBook />
-  </div>
-);
+export default class Home extends Component {
+  /**
+   * Component State
+   */
+  state = {
+    shelfBooks: [],
+  };
 
-// PropTypes
-Home.propTypes = {
-  books: PropTypes.array,
-  shelves: PropTypes.array,
-};
+  // Component propTypes
+  static propTypes = {
+    shelves: PropTypes.array,
+  };
 
-export default Home;
+  /**
+   * Fetches and updates state shelfBooks
+   */
+  updateShelfBooks() {
+    const updater = async () => {
+      try {
+        const shelfBooks = await getAll();
+
+        this.setState(() => ({shelfBooks}));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    updater();
+  }
+
+  /**
+   * Runs functions after component is mounted
+   */
+  componentDidMount() {
+    this.updateShelfBooks();
+  }
+
+  /**
+   * Returns Home UI
+   * @return {obj} The UI DOM object
+   */
+  render() {
+    return (
+      <div className="list-books">
+        <div className="list-books-title">
+          <h1>MyReads</h1>
+        </div>
+        {this.state.shelfBooks && (
+          <BookShelves
+            shelfBooks={this.state.shelfBooks}
+            shelves={this.props.shelves}
+          />
+        )}
+        <AddBook />
+      </div>
+    );
+  }
+}
