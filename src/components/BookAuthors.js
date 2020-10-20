@@ -9,12 +9,13 @@ import PropTypes from 'prop-types';
  */
 const BookAuthors = ({authors}) => (
   <div className="book-authors">
-    {authors && authors.map((author, i) => (
-      <span key={`author-${i}`}>
-        {i > 0 && ` | `}
-        {author}
-      </span>
-    ))}
+    {authors &&
+      authors.map((author, i) => (
+        <span key={`author-${i}`}>
+          {i > 0 && ` | `}
+          {author}
+        </span>
+      ))}
   </div>
 );
 

@@ -26,6 +26,7 @@ export default class Book extends Component {
    */
   static propTypes = {
     bookID: PropTypes.string.isRequired,
+    onUpdateBookSource: PropTypes.func.isRequired,
     shelves: PropTypes.array.isRequired,
   };
 
@@ -44,7 +45,7 @@ export default class Book extends Component {
         }
       }
 
-      this.setState(() => ({currentShelf}));
+      this.setState(() => ({currentShelf}), this.props.onUpdateBookSource());
     };
     updater();
   }

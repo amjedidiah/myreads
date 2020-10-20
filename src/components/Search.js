@@ -46,7 +46,8 @@ export default class Search extends Component {
     const updater = async () => {
       try {
         const searchResults = searchQuery && (await search(searchQuery, 20));
-        const searchedBookIDs = searchResults.map(({id}) => id);
+        const searchBooks = searchResults.items || searchResults;
+        const searchedBookIDs = searchBooks && searchBooks.map(({id}) => id);
 
         this.setState(() => ({searchedBookIDs}));
       } catch (error) {
@@ -76,6 +77,7 @@ export default class Search extends Component {
             <BookList
               bookIDList={searchedBookIDs}
               shelves={this.props.shelves}
+              onUpdateBookList={() => {}}
             />
           )}
         </div>

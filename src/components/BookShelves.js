@@ -8,14 +8,16 @@ import BookShelf from './BookShelf';
 /**
  *  Displays multiple shelves
  * @constructor
+ * @callback onUpdateShelfBooks
  * @param {Object[]} shelfBooks - List of books belonging to a shelf
  * @param {Object[]} shelves - List of shelves
  */
-const BookShelves = ({shelves, shelfBooks}) => (
+const BookShelves = ({onUpdateShelfBooks, shelves, shelfBooks}) => (
   <div className="list-books-content">
     <div>
       {shelves.map(({value, title}) => (
         <BookShelf
+          onUpdateParticularShelfBooks={() => onUpdateShelfBooks()}
           particularShelfBooks={shelfBooks.filter(
               ({shelf}) => shelf === value,
           )}
@@ -30,6 +32,7 @@ const BookShelves = ({shelves, shelfBooks}) => (
 
 // Component propTypes
 BookShelves.propTypes = {
+  onUpdateShelfBooks: PropTypes.func.isRequired,
   shelfBooks: PropTypes.array.isRequired,
   shelves: PropTypes.array.isRequired,
 };

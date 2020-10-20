@@ -64,6 +64,7 @@ export default class Home extends Component {
           <BookShelves
             shelfBooks={this.state.shelfBooks}
             shelves={this.props.shelves}
+            onUpdateShelfBooks={() => this.updateShelfBooks()}
           />
         )}
         <AddBook />
