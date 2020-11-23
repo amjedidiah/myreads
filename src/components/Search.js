@@ -1,11 +1,11 @@
 // Module imports
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Component imports
 import SearchBar from './SearchBar';
 import BookList from './BookList';
-import {search} from '../BooksAPI';
+import { search } from '../BooksAPI';
 
 /**
  * Search Route
@@ -17,14 +17,14 @@ export default class Search extends Component {
    */
   state = {
     searchedBookIDs: [],
-    searchQuery: '',
+    searchQuery: ''
   };
 
   /**
    * Component propTypes
    */
   static propTypes = {
-    shelves: PropTypes.array.isRequired,
+    shelves: PropTypes.array.isRequired
   };
 
   /**
@@ -33,8 +33,8 @@ export default class Search extends Component {
    */
   updateSearchQuery(searchQuery) {
     this.setState(
-        () => ({searchQuery}),
-        this.updateSearchBookListWithShelf(searchQuery),
+      () => ({ searchQuery }),
+      this.updateSearchBookListWithShelf(searchQuery)
     );
   }
 
@@ -47,9 +47,9 @@ export default class Search extends Component {
       try {
         const searchResults = searchQuery && (await search(searchQuery, 20));
         const searchBooks = searchResults.items || searchResults;
-        const searchedBookIDs = searchBooks && searchBooks.map(({id}) => id);
+        const searchedBookIDs = searchBooks && searchBooks.map(({ id }) => id);
 
-        this.setState(() => ({searchedBookIDs}));
+        this.setState(() => ({ searchedBookIDs }));
       } catch (error) {
         console.log(error);
       }
@@ -62,10 +62,18 @@ export default class Search extends Component {
    * @return {object} The UI DOM object
    */
   render() {
-    const {searchedBookIDs, searchQuery} = this.state;
+    const { searchedBookIDs, searchQuery } = this.state;
 
     return (
       <div className="search-books">
+        <p className="my-3">
+          <a
+            href="https://github.com/amjedidiah/myreads/blob/main/SEARCH_TERMS.md"
+            target="_blank"
+          >
+            Search Terms
+          </a>
+        </p>
         <SearchBar
           searchQuery={searchQuery}
           onUpdateSearchQuery={(searchQuery) =>
