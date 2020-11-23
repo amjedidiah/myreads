@@ -21,7 +21,7 @@ export default function BooksApp() {
   ];
 
   return (
-    <Router>
+    <Router basename="/myreads">
       <div className="app">
         <Route
           exact

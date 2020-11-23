@@ -42,6 +42,7 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
+  "homepage": "http://amjedidiah.github.io/myreads",
   "pre-commit": "predev",
   "license": "MIT"
 }
