@@ -1,4 +1,4 @@
-# Contributing to Factory Bot
+# Contributing to myreads
 
 I love and appreciate pull requests from everyone.
 

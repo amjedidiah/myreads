@@ -12,11 +12,11 @@ A React **library** app that allows you to:
 
 ## Table of Content
 
-- Quick Start
-- Contributing
-- License
-- About Me
-- Create React App
+- [Quick Start](#quick-start)
+- [Contributing](#contributing)
+- [License](#license)
+- [About Me](#about-me)
+- [Create React App](#create-react-app)
 
 ## Quick Start
 
@@ -37,7 +37,8 @@ npm start
 
 #### Important
 
-This app uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](docs/SEARCH_TERMS.md). That list of terms are the **_only_** terms that will work, so don't be surprised if your searches for _Basket Weaving_ or _Bubble Wrap_ don't come back with any results.
+This app uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](docs/SEARCH_TERMS.md).
+That list of terms are the **_only_** terms that will work, so don't be surprised if your searches for _Basket Weaving_ or _Bubble Wrap_ don't come back with any results.
 
 #### Issues
 
@@ -50,7 +51,7 @@ Please see [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 
 ## License
 
-myreads is Copyright © 2020 Jedidiah Amaraegbu. It is free, and may be redistributed under the terms specified in the [LICENSE file](LICENSE)
+This copy of myreads is Copyright © 2020 Jedidiah Amaraegbu. It is free, and may be redistributed under the terms specified in the [LICENSE file](LICENSE)
 
 ## About Me
 
