@@ -55,10 +55,19 @@ This copy of myreads is Copyright © 2020 Jedidiah Amaraegbu. It is free, and ma
 
 ## About Me
 
-Hello,
-I am Jedidiah Amaraegbu, an Electronic Engineering student as well as a Front-end Engineer from Nigeria.
-Check out more projects from me @amjedidiah.
-Feel free to drop me an email at imunacode@gmail.com.
+I am a Full-Stack Web Developer and Engineering student passionate about helping businesses and individuals create more value with the web while helping fellow students learn web development.
+
+I recently spoke at a student conference organized by Microsoft Student Partners in South Africa.
+Right now, I am working on the frontend app for EasyMall, an e-commerce store.
+
+In the nearest future, I look to acquire mobile development and AI/Machine Learning Skills.
+That way I can combine them with my passion for learning and teaching together with my web development skills to create even more value for more businesses and individuals, as well as encourage the early adoption of coding skills.
+
+Do you need a website or a web app for your business/idea, a web tutor, or a conference speaker?
+Send me an email: imunacode@gmail.com
+
+Skills: React, Express, Node, PHP, PostgreSQL, MySQL
+
 
 ## Create React App
 
